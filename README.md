@@ -13,13 +13,13 @@ n8n, Python, Javascript. <br><br>
 
 __1. The data source__ <br>
 
-The data is complaint ranking list of Taichung City in Taiwan and belongs to part of Open Data in Taiwan.<br>
-(Please refer to [details](<https://datacenter.taichung.gov.tw/swagger/OpenData/37800d26-6574-4326-be6e-55c765b72f3d>))<br>
+The data is complaint ranking list of Taichung City in Taiwan and belongs to part of "DATA.GOV.TW".<br>
+(Please refer to [details](<https://opendata.taichung.gov.tw/search/fdbf5e8e-d974-4355-abaf-18bc8c590cf2>))<br>
 <br>
 
 __2. Workflow__ <br>
 
-The workflow of n8n uses several types of node, including "Schedule Trigger", "Execute Command", "Code", "If", and "Gmail". The mainly steps are as below.
+The workflow of n8n uses several types of node, including "Schedule Trigger", "Execute Command", "Code", "If", and "Gmail". The main steps are as below.
 <br>
 (1)Run python script to call API and save results into CSV file in docker container.<br>
 (2)Transform data type with Pyton or JavaScript.<br>
