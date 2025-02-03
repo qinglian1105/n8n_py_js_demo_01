@@ -1,0 +1,15 @@
+version: '3.10'
+services:
+  n8n-python:
+    image: naskio/n8n-python:1.77.0      
+    container_name: n8n-python
+    environment:
+      GENERIC_TIMEZONE: Asia/Taipei
+      TZ: Asia/Taipei
+    ports:
+      - "5678:5678"
+    volumes:
+      - $HOST_DIR/node:/home/node/.n8n
+      - $HOST_DIR/local-files:/data/files 
+      - $HOST_DIR/python_scripts:/data/py_scripts
+      - $HOST_DIR/requirements.txt:/data/requirements.txt
