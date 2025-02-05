@@ -1,21 +1,31 @@
 // n8n_javascript.js
 
-function processing_data(jstr) {
-  const int_cols = ["編號", "件數"];
-  const float_cols = ["該業務占排名前十大百分比"];
-  let obj_list = JSON.parse(jstr);
-  for (let i = 0; i < obj_list.length; i++) {
-    obj_list[i][int_cols[0]] = parseInt(obj_list[i][int_cols[0]]);
-    obj_list[i][int_cols[1]] = parseInt(obj_list[i][int_cols[1]]);
-    obj_list[i][float_cols[0]] = parseFloat(obj_list[i][float_cols[0]]);
-  }
-  return obj_list;
+// Format a number with commas
+function with_commas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-//  Get the results of previous node in n8n
-let jstr = $input.first().json.stdout;
+// Function for transforming Json data into Html table
+function json_to_html_tb(json_obj) {
+  let table = "<thead><tr><th>Code</th><th>Name</th><th>Amount(TWD)</th></tr></thead>tr_data"
+  let trs = ""
+  for (let i = 0; i < json_obj.length; i++) { 
+    let col01 = "<td class='scode'>" + json_obj[i].json.s_code + "</td>"
+    let col02 = "<td class='sname'>" + json_obj[i].json.s_name + "</td>"
+    let col03 = "<td class='amt'>" + with_commas(json_obj[i].json.holding_amount) + "</td>"  
+    let row = "<tr>" + col01 + col02 + col03 + "</tr>"    
+    trs = trs + row
+  } 
+  let tb = table.replace("tr_data",trs)
+  let html = tb 
+  return html;
+}
 
-let ds = processing_data(jstr);
+// Get the results of previous node in n8n    
+let node_input = $input.all()
 
-//  Pass data to next node in n8n
-return ds;
+let res = {"html_table": json_to_html_tb(node_input)}
+
+// Pass data to next node in n8n
+return res;
+

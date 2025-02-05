@@ -1,23 +1,29 @@
 # n8n_python.py
-import pandas as pd
 import json
+import pandas as pd
+import os
 
 
-def processing_data(jstr):
-    int_cols = ["編號", "件數"]
-    float_cols = ["該業務占排名前十大百分比"]
-    dic = json.loads(jstr)
-    df = pd.DataFrame(dic)
-    df[int_cols] = df[int_cols].astype(int)
-    df[float_cols[0]] = df[float_cols[0]].str.replace("%", "").astype(float)
-    ds = df.to_dict(orient="records")
-    return ds
+def top10_in_etfs(j_str):
+    dic = json.loads(j_str)
+    etfs = []
+    for etf in dic["etf_data"]:
+        for content in etf["etf_holding"]:
+            etfs.append(content)
+    df = pd.DataFrame(etfs)
+    cols_group = ["s_code", "s_name"]
+    col_sum = "holding_amount"
+    df_amt = df.groupby(cols_group)[col_sum].sum().reset_index()
+    df_amt_ranking = df_amt.sort_values(col_sum, ascending=False)
+    dic = df_amt_ranking.head(10).to_dict(orient="records")
+    return dic
 
 
-# Get the results of previous node in n8n 
-jstr = _input.first().json.stdout
+# Get the results of previous node in n8n
+j_str = _input.first().json.stdout
 
-ds = processing_data(jstr)
+ds = top10_in_etfs(j_str)
 
-# Pass data to next node in n8n
+
+# Pass data to next node in n8nreturn ds
 return ds
