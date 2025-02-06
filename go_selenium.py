@@ -1,5 +1,5 @@
 """
-go_selenium.py
+go_selenium.py - python file in node "Execute Command" of n8n
 
 Python 3.10.16
 Selenium 4.28.1

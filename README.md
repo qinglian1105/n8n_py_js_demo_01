@@ -19,32 +19,40 @@ In addition, the information about ETF ranking by asset value, trading volume an
 
 __2. Data source__ <br>
 
-Thanks for the website, "https://www.pocket.tw/etf/", provided by Pocket Securities. This company, one of the best Online Brokers in Taiwan, delivers high-quality services to customers, and its website makes it easier for investors to obtain financial data and useful information. <br>
+Thanks for the website, Pocket Securities ([details](<https://www.pocket.tw/etf/>)). This company, one of the best Online Brokers in Taiwan, delivers high-quality services to customers, and its website makes it easier for investors to obtain financial data and useful information. <br>
 <br>
 
 __3. Workflow__ <br>
 
-The workflow of n8n uses several types of node, including "Schedule Trigger", "Execute Command", "Code", "If", and "Gmail". The main steps are as below.
+The workflow of n8n, as shown below, uses several types of node, including "Schedule Trigger", "Execute Command", "Code", "If", and "Gmail".<br>
+
+【n8n - Editor】<br>
+![avatar](./README_png/n8n_editor.png)
+
+The primary steps are described as the following.
 <br>
-(1)Run python script to web scraping with Selenium and save results into JSON file inside docker container. Re-run python scritp, if failed.<br>
-(2)node "Get top-10 holding of ETFs with Python" is to summarize data. If failed, the next node will notice "task failed" with Gmail.<br>
+(1)Set a schedule to execute the python script for web scraping with Selenium and save results into JSON file inside docker container. Then, Re-execute, if failed, the same python scritp.<br>
+(2)node "Get top-10 holding of ETFs with Python" is to summarize data. If failed, the next node will directly notice "task failed" with Gmail.<br>
 (3)Once successful, the next node will create HTML code with JavaScript for Gmail.<br>  
 
-![avatar](./README_png/n8n_editor.png)
 <br>
 <br>
 
 __4. Results__ <br>
 
-As memtioned above, collecting data from website will be saved into JSON file. Then, the data will be summarize to statistical table for Gmail. Furthermore, regardless of whether the node "Get top-10 holding of ETFs with Python" completes or not, the workflow will send an email to announce recipient.<br>
+The execution of the workflow is shown in the figure below.<br>
 
-![avatar](./README_png/n8n_executions.png)
+【n8n - Execution】<br>
+![avatar](./README_png/n8n_executions.png)<br>
 
-![avatar](./README_png/n8n_gmail.png)
+As memtioned above, collecting data from the website will be saved into JSON file. Then, the data will be summarize to statistical table for Gmail. Furthermore, regardless of whether the node "Get top-10 holding of ETFs with Python" completes or not, the workflow will send an email to announce recipient.<br>
+
+【HTML table in Gmail】<br>
+![avatar](./README_png/n8n_gmail.png)<br>
 
 (Concerning to the details, please refer to the files of this project) <br>
 
-<br><br><br>
+<br><br>
 
 ---
 

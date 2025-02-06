@@ -1,7 +1,6 @@
-# n8n_python.py
+# n8n_python.py - Python code in the node "Code" of n8n
 import json
 import pandas as pd
-import os
 
 
 def top10_in_etfs(j_str):
@@ -24,6 +23,5 @@ j_str = _input.first().json.stdout
 
 ds = top10_in_etfs(j_str)
 
-
-# Pass data to next node in n8nreturn ds
+# Pass data to next node in n8n
 return ds

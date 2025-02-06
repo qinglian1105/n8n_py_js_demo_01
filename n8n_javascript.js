@@ -1,4 +1,4 @@
-// n8n_javascript.js
+// n8n_javascript.js - JavaScript code in the node "Code" of n8n
 
 // Format a number with commas
 function with_commas(x) {
@@ -16,9 +16,8 @@ function json_to_html_tb(json_obj) {
     let row = "<tr>" + col01 + col02 + col03 + "</tr>"    
     trs = trs + row
   } 
-  let tb = table.replace("tr_data",trs)
-  let html = tb 
-  return html;
+  let html_tb = table.replace("tr_data",trs)  
+  return html_tb;
 }
 
 // Get the results of previous node in n8n    
@@ -28,4 +27,3 @@ let res = {"html_table": json_to_html_tb(node_input)}
 
 // Pass data to next node in n8n
 return res;
-
