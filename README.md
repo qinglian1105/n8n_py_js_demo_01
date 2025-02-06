@@ -27,12 +27,11 @@ __3. Workflow__ <br>
 The workflow of n8n, as shown below, uses several types of node, including "Schedule Trigger", "Execute Command", "Code", "If", and "Gmail".<br>
 
 【n8n - Editor】<br>
-![avatar](./README_png/n8n_editor.png)
+![avatar](./README_png/n8n_editor.png)<br>
 
-The primary steps are described as the following.
-<br>
+The primary steps are described as the following.<br>
 (1)Set a schedule to execute the python script for web scraping with Selenium and save results into JSON file inside docker container. Then, Re-execute, if failed, the same python scritp.<br>
-(2)node "Get top-10 holding of ETFs with Python" is to summarize data. If failed, the next node will directly notice "task failed" with Gmail.<br>
+(2)Node "Get top-10 holding of ETFs with Python" is to summarize data. If failed, the next node will directly notice "task failed" with Gmail.<br>
 (3)Once successful, the next node will create HTML code with JavaScript for Gmail.<br>  
 
 <br>
@@ -51,7 +50,6 @@ As memtioned above, collecting data from the website will be saved into JSON fil
 ![avatar](./README_png/n8n_gmail.png)<br>
 
 (Concerning to the details, please refer to the files of this project) <br>
-
 <br><br>
 
 ---
