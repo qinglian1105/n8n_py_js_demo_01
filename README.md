@@ -30,7 +30,7 @@ The workflow of n8n, as shown below, uses several types of node, including "Sche
 ![avatar](./README_png/n8n_editor.png)<br>
 
 The primary steps are described as the following.<br>
-(1)Set a schedule to execute the python script for web scraping with Selenium and save results into JSON file inside docker container. Then, Re-execute, if failed, the same python scritp.<br>
+(1)Set a schedule to execute the python script for web scraping with Selenium and save results into JSON file inside a docker container. Then, Re-execute, if failed, the same python scritp.<br>
 (2)Node "Get top-10 holding of ETFs with Python" is to summarize data. If failed, the next node will directly notice "task failed" with Gmail.<br>
 (3)Once successful, the next node will create HTML code with JavaScript for Gmail.<br>  
 
@@ -39,9 +39,9 @@ The primary steps are described as the following.<br>
 
 __4. Results__ <br>
 
-The execution of the workflow is shown in the figure below.<br>
+The execution of the workflow is shown in the figure below. You can see the execution start time in the upper left corner of the figure.<br>
 
-【n8n - Execution】<br>
+【n8n - Executions】<br>
 ![avatar](./README_png/n8n_executions.png)<br>
 
 As memtioned above, collecting data from the website will be saved into JSON file. Then, the data will be summarize to statistical table for Gmail. Furthermore, regardless of whether the node "Get top-10 holding of ETFs with Python" completes or not, the workflow will send an email to announce recipient.<br>
